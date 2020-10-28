@@ -4,8 +4,10 @@
     <span slot="mid-icon" class="iconfont icon-saoyisao"></span>
     <span slot="right-icon" class="iconfont icon-xiaoxi"></span>
   </navigator>
-  <search-box background-color="#ffffff"></search-box>
-  <component v-for="(item, index) in datas" :key="index" :is="Object.keys(item)[0]"></component>
+  <search-box background-color="#ffffff">
+
+  </search-box>
+  <component v-for="(item, index) in datas" :key="index" :is="Object.keys(item)[0]" :values="item"></component>
 </div>
 </template>
 
