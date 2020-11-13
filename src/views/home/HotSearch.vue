@@ -1,8 +1,9 @@
 <template>
 <div class="hot-search">
   <ul>
-    <li v-for="item in values['hot_search']" :key="item">{{item}}</li>
+    <li v-for="item in values" :key="item">{{item}}</li>
   </ul>
+  <slot name="hot-search-bg"></slot>
 </div>
 </template>
 
@@ -13,6 +14,12 @@ export default {
 </script>
 
 <style scoped>
+.hot-search {
+  position: relative;
+  padding: 5px 0;
+  background-color: #D50012;
+}
+
 .hot-search ul {
   list-style: none;
   display: flex;
@@ -25,5 +32,6 @@ export default {
 .hot-search ul li {
   flex: 1;
   text-align: center;
+  color: #FFFFFF;
 }
 </style>

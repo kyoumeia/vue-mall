@@ -1,7 +1,7 @@
 <template>
 <div class="goods-class">
   <ul class="goods-class-box">
-    <li v-for="items in values['goods_class'].item" :key="items.image">
+    <li v-for="items in values.item" :key="items.image">
       <img :src="items.image" alt="">
       <p>{{items.title}}</p>
     </li>
@@ -20,6 +20,7 @@ export default {
   width: 100%;
   box-sizing: border-box;
   padding: 0 10px;
+  margin-bottom: 10px;
 }
 
 .goods-class .goods-class-box {
@@ -29,6 +30,7 @@ export default {
   display: grid;
   grid-template-rows: 90px 90px;
   grid-template-columns: repeat(5, 20%);
+  box-shadow: 0 0 5px 5px rgba(186, 178, 178, 0.1);
 }
 
 .goods-class .goods-class-box li {

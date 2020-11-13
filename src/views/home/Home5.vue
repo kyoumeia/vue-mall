@@ -1,26 +1,34 @@
 <template>
 <div>
-  <h2>home5</h2>
-  <van-button type="primary">主要按钮</van-button>
-  <van-button type="info">信息按钮</van-button>
-  <van-button type="default">默认按钮</van-button>
-  <van-button type="warning">警告按钮</van-button>
-  <van-button type="danger">危险按钮</van-button>
+  <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
+    <van-swipe-item>1</van-swipe-item>
+    <van-swipe-item>2</van-swipe-item>
+    <van-swipe-item>3</van-swipe-item>
+    <van-swipe-item>4</van-swipe-item>
+  </van-swipe>
 </div>
 </template>
 
 <script>
 import Vue from 'vue';
 import {
-  Button
+  Swipe,
+  SwipeItem
 } from 'vant';
 
-Vue.use(Button);
+Vue.use(Swipe);
+Vue.use(SwipeItem);
 export default {
-
+  props: ['values']
 }
 </script>
 
-<style>
-
+<style scoped>
+.my-swipe .van-swipe-item {
+  color: #fff;
+  font-size: 20px;
+  line-height: 150px;
+  text-align: center;
+  background-color: #39a9ed;
+}
 </style>

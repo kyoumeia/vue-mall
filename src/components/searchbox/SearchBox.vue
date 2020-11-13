@@ -1,5 +1,5 @@
 <template>
-<div class="search-box">
+<div class="search-box" :style="[boxStyle]">
   <slot name="search-left"></slot>
   <div class="search-mid" :style="[midStyle]">
     <span class="iconfont icon-sousuo"></span>
@@ -16,12 +16,21 @@ export default {
     backgroundColor: {
       type: String,
       default: '#E5E5E5'
+    },
+    boxBackground: {
+      type: String,
+      default: 'inherit'
     }
   },
   computed: {
     midStyle() {
       return {
         backgroundColor: this.backgroundColor
+      }
+    },
+    boxStyle() {
+      return {
+        backgroundColor: this.boxBackground
       }
     }
   },

@@ -51,4 +51,13 @@ export default {
 body {
   background-color: #F2F2F2;
 }
+
+#app {
+  padding-bottom: 50px;
+}
+
+ul,
+li {
+  list-style: none;
+}
 </style>
