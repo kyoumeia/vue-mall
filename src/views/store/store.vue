@@ -14,30 +14,30 @@
       <span class="title">附近商家</span>
     </div>
     <ul class="store-cate">
-      <li v-for="item in datas.datas.store_class_list" :key="item.sc_name">{{item.sc_name}}</li>
+      <li v-for="item in store_class_list" :key="item.sc_name">{{item.sc_name}}</li>
     </ul>
-    <div class="store-each">
+    <div class="store-each" v-for="item in store_list" :key="item.store_id">
       <div class="each-left">
-        <img src="" alt="">
+        <img :src="item.store_avatar" alt="">
       </div>
       <div class="each-right">
         <div class="store-name">
-          <span class="name">阳光平价超市</span>
-          <span class="addr">（南岳村店）</span>
-          <span class="distance">43分钟 2.1km</span>
+          <span class="name">{{item.store_name}}</span>
+          <span class="addr"></span>
+          <span class="distance">{{item.distance_info.duration}} {{item.distance_info.distance}}</span>
         </div>
         <p class="credit">
-          <span>信用度：</span>
+          <span>信用度：{{item.store_credit_average}}</span>
           <img src="" alt="">
         </p>
-        <p>马上生鲜直营店</p>
-        <p>好评度100%</p>
-        <p>交易数量</p>
+        <p>{{item.store_description}}</p>
+        <p>好评度{{item.store_ate_acclaim}}%</p>
+        <p>商品数量{{item.goods_count}}件 最近交易{{item.num_sales_jq}}笔</p>
         <ul class="goods-list">
-          <li>
-            <img src="" alt="">
-            <span class="price">￥9.99</span>
-            <span class="name">交易数量</span>
+          <li v-for="good in item.store_goods_distinct" :key="good.goods_id">
+            <img :src="good.goods_image_url" alt="">
+            <span class="price">{{good.goods_price}}</span>
+            <span class="name">{{good.goods_name}}</span>
           </li>
         </ul>
       </div>
@@ -55,18 +55,22 @@ import {
 export default {
   data() {
     return {
-      datas: ''
+      data: '',
+      store_class_list: [],
+      store_list: []
     };
   },
   created() {
+    let self = this;
     request({
         url: '/index.php?act=store_list'
       })
       .then(result => {
         if (result.data.code == 200) {
-          this.datas = result.data
+          self.data = result.data
+          self.store_class_list = result.data.datas.store_class_list
+          self.store_list = result.data.datas.store_list
         }
-        console.log(result)
       })
       .catch(error => {
         console.error(error)
@@ -129,6 +133,8 @@ export default {
   background-color: #FFFFFF;
   border-radius: 10px;
   padding: 10px 0;
+  margin-bottom: 10px;
+  box-shadow: 0 0 5px 5px rgba(186, 178, 178, 0.1);
 }
 
 .each-left {
@@ -190,6 +196,7 @@ export default {
   display: inline-block;
   width: 62px;
   text-align: center;
+  margin-right: 6px;
 }
 
 .goods-list li img {
